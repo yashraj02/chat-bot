@@ -1,28 +1,24 @@
 {
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "include": [
+    "backend",
+    "frontend",
+    "pages"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["DOM"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "commonjs",
-    "outDir": "./dist",
-    // "moduleResolution": "bundler",
+    "noEmit": false,
+    "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "outDir": "./dist",
+    "target": "esnext",
   },
-  "include": ["backend/**/**/*.ts"],
-  "exclude": ["node_modules"]
+  "typeRoots": ["typing"]
 }

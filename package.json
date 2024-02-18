@@ -2,35 +2,58 @@
   "name": "chat-bot",
   "version": "0.1.0",
   "private": true,
-  "module": "commonjs",
+  "type": "module",
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
+  },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev dist",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "init-backend": "tsc backend/src/api/index.ts",
-    "start-backend": "npm run init-backend && node backend/src/api/index.js"
+    "init-compilation": "tsc",
+    "start-backend": "npm run init-compilation && node dist/backend/src/api/ExpressCode.js",
+    "start-dev-app": "concurrently 'npm run start-backend' 'npm run dev'",
+    "start-prod-app": "concurrently 'npm run start-backend' 'npm run build'"
   },
   "dependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "axios": "^1.6.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "flowbite": "^2.2.1",
+    "flowbite-react": "^0.7.2",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "socket.io": "^4.7.2"
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^20",
+    "@types/node": "^20.10.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^6.12.0",
-    "@typescript-eslint/parser": "^6.12.0",
+    "@types/socket.io-client": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.54.0",
+    "eslint": "^8.56.0",
     "eslint-config-next": "14.0.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.33.2",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "tailwindcss": "^3.3.5",
-    "typescript": "^5"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

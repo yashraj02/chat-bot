@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CHAT_CONSTS from '../../constants/chatConsts.js';
-import { AddMessageType, ChatInputProps } from '../../types/chatTypes.js';
+import { ChatInputProps } from '../../types/chatTypes.js';
+import { AddMessage } from '../../types/chatTypes.js';
 
 const { EVENT_NAME, STYLES, PLACEHOLDER } = CHAT_CONSTS;
 const { USER_INPUT } = EVENT_NAME;
@@ -9,6 +10,14 @@ const { INPUT_STYLES } = STYLES;
 const ChatInput: React.FC<ChatInputProps> = ({ addMessage }) => {
   const [inputValue, setInputValue] = useState('');
 
+  return component(inputValue, addMessage, setInputValue);
+};
+
+const component = (
+  inputValue: string,
+  addMessage: AddMessage,
+  setInputValue: React.Dispatch<React.SetStateAction<string>>,
+) => {
   return (
     <form
       id="form"
@@ -34,7 +43,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ addMessage }) => {
 
 const handleSubmit = (
   event: React.FormEvent,
-  addMessage: AddMessageType,
+  addMessage: AddMessage,
   inputValue: string,
   setInputValue: React.Dispatch<React.SetStateAction<string>>,
 ) => {
